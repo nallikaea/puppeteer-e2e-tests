@@ -4,16 +4,15 @@
   "description": "An example of ES6 page objects using the new puppeteer framework from google chrome",
   "main": "index.js",
   "scripts": {
-    "test": "npm run lint && npm run build && mocha --timeout 999999 lib/index.js",
+    "test": "mocha --timeout 999999 lib/index.js",
     "lint": "eslint --fix src",
-    "build": "babel src --out-dir lib",
-    "runcompiledtest": "mocha --timeout 999999 lib/index.js",
-    "testlocal": "npm run lint && npm run build && mocha --timeout 999999 lib/index.js"
+    "moveJsonFiles": "copyfiles -u 1 src/selectors/* src/config/* lib",
+    "build": "rimraf lib && babel src --out-dir lib && npm run moveJsonFiles"
   },
   "pre-commit": [
     "lint",
     "build",
-    "runcompiledtest"
+    "test"
   ],
   "repository": {
     "type": "git",
@@ -26,6 +25,7 @@
   },
   "homepage": "https://github.com/jdavis61/puppeteer-api-examples#readme",
   "dependencies": {
+    "chai": "^4.1.2",
     "mocha": "^5.0.5",
     "puppeteer": "latest"
   },
@@ -33,10 +33,12 @@
     "babel-cli": "latest",
     "babel-plugin-transform-runtime": "latest",
     "babel-preset-env": "latest",
+    "copyfiles": "^2.0.0",
     "eslint": "latest",
     "eslint-config-airbnb-base": "latest",
     "eslint-plugin-import": "latest",
-    "pre-commit": "latest"
+    "pre-commit": "latest",
+    "rimraf": "^2.6.2"
   },
   "babel": {
     "presets": [

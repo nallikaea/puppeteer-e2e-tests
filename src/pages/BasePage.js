@@ -1,22 +1,23 @@
-class BasePage {
+export default class BasePage {
 
-    constructor(page) {
+    constructor(page, response) {
         this.page = page;
+        this.response = response;
     }
 
     async getPageHeader() {
         // The header is either an h2 or h3 element.
         const h2Selector = 'document.querySelector("div.example h2");';
         const h3Selector = 'document.querySelector("div.example h3");';
-        let returnText;
         try {
-            returnText = await page.evaluate(h2Selector).textContent;
+            return await page.evaluate(h2Selector).textContent;
         } catch (err) {
             // assume h2 is not the page header
-            returnText = await page.evaluate(h3Selector).textContent;
+            return await page.evaluate(h3Selector).textContent;
         }
-        return returnText;
-}
+    }
 
+    getResponse() {
+        return this.response;
+    }
 }
-module.exports = BasePage;

@@ -1,27 +1,34 @@
 import BasePage from './BasePage';
+import selectors from '../selectors/login.json';
 
-class Login extends BasePage {
+export default class Login extends BasePage {
 
-    async gotoPage() {
-        await this.page.goto('http://the-internet.herokuapp.com/login');
+    get username() {
+        return Promise.resolve(this.page.$(selectors.username));
+    }
+
+    get password() {
+        return Promise.resolve(this.page.$(selectors.password));
+    }
+
+    get submitButton() {
+        return Promise.resolve(this.page.$(selectors.loginButton));
     }
 
     async enterUsername(username) {
-        const usernameSelector = 'input[name=\'username\']';
-        await this.page.focus(usernameSelector);
-        this.page.type(usernameSelector, username);
+        const un = await this.username; 
+        await un.focus();
+        await un.type(username);
     }
 
     async enterPassword(password) {
-        const passwordSelector = 'input[name=\'password\']';
-        await this.page.focus(passwordSelector);
-        this.page.type(passwordSelector, password);
+        const passwordElement = await this.password;
+        await passwordElement.focus();
+        await passwordElement.type(password);
     }
 
     async submitLoginForm() {
-        this.page.click('#login > button');
+        await this.submitButton.then(e => e.click());
         await this.page.waitForNavigation();
     }
-
 }
-module.exports = Login;
