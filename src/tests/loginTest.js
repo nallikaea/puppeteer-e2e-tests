@@ -26,7 +26,8 @@ describe('Test', function() {
         // console.log(loginPage.getResponse());
         await loginPage.enterUsername('tomsmith');
         await loginPage.enterPassword('SuperSecretPassword!');
-        await loginPage.submitLoginForm();
+        const securedPage = await loginPage.submitLoginForm();
+        await securedPage.logout(); 
     });
 
 });

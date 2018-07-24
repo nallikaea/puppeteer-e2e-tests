@@ -27,7 +27,6 @@ export default class NavigationMenu {
         e.g. await this.page.$$(selectors.navLinks).length returns [0]
         while the below code returns an integer greater than zero.
         */
-        const links = await this.page.$$(selectors.navLinks);
-        return links.length;
+        return await this.page.$$(selectors.navLinks).then(e => e.length);
     }
 }

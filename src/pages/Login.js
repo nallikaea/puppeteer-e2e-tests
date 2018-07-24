@@ -1,5 +1,6 @@
 import BasePage from './BasePage';
 import selectors from '../selectors/login.json';
+import SecuredPage from './SecuredPage';
 
 export default class Login extends BasePage {
 
@@ -30,5 +31,6 @@ export default class Login extends BasePage {
     async submitLoginForm() {
         await this.submitButton.then(e => e.click());
         await this.page.waitForNavigation();
+        return new SecuredPage(this.page);
     }
 }
