@@ -1,6 +1,6 @@
 import BasePage from './BasePage';
-import selectors from '../selectors/logout.json';
-import loginSelectors from '../selectors/login.json';
+const selectors = require('../selectors/logout.json');
+const loginSelectors = require('../selectors/login.json');
 
 export default class SecuredPage extends BasePage {
 

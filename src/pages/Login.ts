@@ -1,6 +1,6 @@
 import BasePage from './BasePage';
-import selectors from '../selectors/login.json';
 import SecuredPage from './SecuredPage';
+const selectors = require('../selectors/login.json');
 
 export default class Login extends BasePage {
 
@@ -17,7 +17,7 @@ export default class Login extends BasePage {
     }
 
     async enterUsername(username) {
-        const un = await this.username; 
+        const un = await this.username;
         await un.focus();
         await un.type(username);
     }

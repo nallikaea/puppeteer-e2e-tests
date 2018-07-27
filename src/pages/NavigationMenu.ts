@@ -1,14 +1,14 @@
 import Login from './Login';
-import config from '../config/config.json';
-import selectors from '../selectors/navMenu.json';
+const config = require('../config/config.json');
+const selectors = require('../selectors/navMenu.json');
 
 const baseURL = config.baseURL;
 
 export default class NavigationMenu {
-
+    page: any;
     constructor(page) {
         this.page = page;
-    }    
+    }
 
     async loadNavigationMenu() {
         await this.page.goto(baseURL);
@@ -17,8 +17,8 @@ export default class NavigationMenu {
 
     async loadFormAuthenticationPage() {
         const url = `${baseURL}${config.login}`;
-        const response = await this.page.goto(url);
-        return new Login(this.page, response);
+        await this.page.goto(url);
+        return new Login(this.page);
     }
 
     async getNumberOfLinks() {

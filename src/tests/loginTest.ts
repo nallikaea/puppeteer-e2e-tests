@@ -1,33 +1,31 @@
-import puppeteer from 'puppeteer';
+import * as puppeteer from 'puppeteer';
 import NavigationMenu from '../pages/NavigationMenu';
 
-describe('Test', function() {
+describe('Test', () => {
 
     let browser;
     let page;
     let navMenu;
-    
-    before(async function() {
+
+    before(async () => {
         browser = await puppeteer.launch({ headless: false });
         page = await browser.newPage();
         navMenu = new NavigationMenu(page);
     });
 
-    after(async function() {
+    after(async () => {
         // const metrics = await page.metrics();
         // console.log(metrics);
         await browser.close();
     });
 
-    it('Login test', async function() {
+    it('Login test', async () => {
         await navMenu.loadNavigationMenu();
         console.log(await navMenu.getNumberOfLinks());
         const loginPage = await navMenu.loadFormAuthenticationPage();
-        // console.log(loginPage.getResponse());
         await loginPage.enterUsername('tomsmith');
         await loginPage.enterPassword('SuperSecretPassword!');
         const securedPage = await loginPage.submitLoginForm();
-        await securedPage.logout(); 
+        await securedPage.logout();
     });
-
 });
