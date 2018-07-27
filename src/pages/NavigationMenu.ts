@@ -10,18 +10,18 @@ export default class NavigationMenu {
         this.page = page;
     }
 
-    async loadNavigationMenu() {
+    async loadNavigationMenu() : Promise<void> {
         await this.page.goto(baseURL);
         await this.page.waitFor(selectors.defaultPresenceLocator);
     }
 
-    async loadFormAuthenticationPage() {
+    async loadFormAuthenticationPage() : Promise<Login> {
         const url = `${baseURL}${config.login}`;
         await this.page.goto(url);
         return new Login(this.page);
     }
 
-    async getNumberOfLinks() {
+    async getNumberOfLinks() : Promise<number> {
         /*
         Do not chain the commands togther, otherwise an empty set will be returned,
         e.g. await this.page.$$(selectors.navLinks).length returns [0]

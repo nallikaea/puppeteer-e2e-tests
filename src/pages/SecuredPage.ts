@@ -4,7 +4,7 @@ const loginSelectors = require('../selectors/login.json');
 
 export default class SecuredPage extends BasePage {
 
-    async logout() {
+    async logout() : Promise<void> {
         await this.page.click(selectors.logoutLink);
         await this.page.waitFor(loginSelectors.username);
     }
