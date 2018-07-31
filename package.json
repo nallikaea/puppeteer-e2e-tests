@@ -1,7 +1,7 @@
 {
   "name": "puppeteer-api-examples",
   "version": "1.0.0",
-  "description": "An example of ES6 page objects using the new puppeteer framework from google chrome",
+  "description": "Provides examples of how to use the puppeteer api. Tests executed against http://the-internet.herokuapp.com.",
   "main": "index.js",
   "scripts": {
     "test": "mocha --timeout 999999 lib/index.js",
