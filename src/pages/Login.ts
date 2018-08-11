@@ -2,6 +2,7 @@ import BasePage from './BasePage';
 import SecuredPage from './SecuredPage';
 import { ElementHandle } from '../../node_modules/@types/puppeteer';
 const selectors = require('../selectors/login.json');
+const presenceLocators = require('../selectors/screenPresenceLocators.json');
 
 export default class Login extends BasePage {
 
@@ -31,7 +32,14 @@ export default class Login extends BasePage {
 
     async submitLoginForm() : Promise<SecuredPage> {
         await this.submitButton.then(e => e.click());
-        await this.page.waitForNavigation();
+        // await this.page.waitForNavigation();
+        await this.page.waitForSelector(presenceLocators.securedPage, { visible: true });
         return new SecuredPage(this.page);
+    }
+
+    async login(username, password) : Promise<SecuredPage> {
+        await this.enterUsername(username);
+        await this.enterPassword(password);
+        return await this.submitLoginForm();
     }
 }
