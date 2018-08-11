@@ -7,7 +7,8 @@
     "test": "mocha --timeout 999999 lib/index.js",
     "lint": "tslint --fix src/**/*.ts",
     "moveJsonFiles": "copyfiles -u 1 src/selectors/* src/config/* lib",
-    "build": "npm run lint && rimraf lib && npm run moveJsonFiles && tsc --outDir lib"
+    "build": "npm run lint && rimraf lib && npm run moveJsonFiles && tsc --outDir lib",
+    "testlocal": "npm run build && npm run test"
   },
   "pre-commit": [
     "lint",
@@ -36,6 +37,7 @@
     "@types/puppeteer": "^1.5.1",
     "copyfiles": "^2.0.0",
     "pre-commit": "latest",
+    "puppeteer-debug": "^1.0.1",
     "rimraf": "^2.6.2",
     "ts-node": "^5.0.1",
     "tslint": "^5.11.0",
