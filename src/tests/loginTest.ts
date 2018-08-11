@@ -1,4 +1,5 @@
 import * as puppeteer from 'puppeteer';
+import { expect } from 'chai';
 import NavigationMenu from '../pages/NavigationMenu';
 
 describe('Test', () => {
@@ -14,8 +15,6 @@ describe('Test', () => {
     });
 
     after(async () => {
-        // const metrics = await page.metrics();
-        // console.log(metrics);
         await browser.close();
     });
 
@@ -23,6 +22,7 @@ describe('Test', () => {
         await navMenu.loadNavigationMenu();
         console.log(await navMenu.getNumberOfLinks());
         const loginPage = await navMenu.loadFormAuthenticationPage();
+        expect(await loginPage.getPageHeader()).to.equal('Login Page');
         await loginPage.enterUsername('tomsmith');
         await loginPage.enterPassword('SuperSecretPassword!');
         const securedPage = await loginPage.submitLoginForm();
