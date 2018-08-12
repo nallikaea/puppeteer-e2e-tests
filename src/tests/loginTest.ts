@@ -1,9 +1,20 @@
-import * as puppeteer from 'puppeteer';
+import * as puppeteer from 'puppeteer-debug';
 import { expect } from 'chai';
 import NavigationMenu from '../pages/NavigationMenu';
+import launchPuppeteer from '../utils/launchPuppeteer';
+
 const messages = require('../config/messages.json');
+const options = {
+    headless: false,
+};
+
+// Test constants
 const username:string = 'tomsmith';
 const password:string = 'SuperSecretPassword!';
+const incorrectUsername:string = 'timsmith';
+const incorrectPassword:string = 'qwerty100';
+const usernameErrorMessage:string = 'Your username is invalid!';
+const passwordErrorMessage:string = 'Your password is invalid!';
 
 describe('Test', () => {
 
@@ -12,8 +23,9 @@ describe('Test', () => {
     let loginPage;
 
     before(async () => {
-        browser = await puppeteer.launch({ headless: false });
+        browser = await puppeteer.launch(options);
         page = await browser.newPage();
+        await page.setViewport({ width: 1280, height: 1024 });
         const navMenu = new NavigationMenu(page);
         await navMenu.loadNavigationMenu();
         console.log(await navMenu.getNumberOfLinks());
@@ -37,5 +49,32 @@ describe('Test', () => {
 
         expect(await loginPage.getPageMessage()).to.equal('You logged out of the secure area!');
         expect(await loginPage.getPageHeader()).to.not.equal('Secure Area');
+    });
+
+    it('Validation Message Test', async() => {
+        // username field validation
+        await loginPage.loginWithIncorrectInput(incorrectUsername, '');
+        expect(await loginPage.getPageMessage()).to.equal(usernameErrorMessage);
+
+        // password field validation
+        await loginPage.loginWithIncorrectInput(username, incorrectPassword);
+        expect(await loginPage.getPageMessage()).to.equal(passwordErrorMessage);
+
+        // Submit blank form
+        await loginPage.loginWithIncorrectInput('', '');
+        expect(await loginPage.getPageMessage()).to.equal(usernameErrorMessage);
+    });
+
+    it('Close Validation Message Test', async() => {
+        await loginPage.loginWithIncorrectInput(incorrectUsername, incorrectPassword);
+        expect(await loginPage.getPageMessage()).to.equal(usernameErrorMessage);
+        await loginPage.closePageMessage();
+        let isCloseButtonClicked : boolean = false;
+        try {
+            await loginPage.closePageMessage();
+            isCloseButtonClicked = true;
+        } catch (err) {
+            expect(isCloseButtonClicked).to.equal(false);
+        }
     });
 });
