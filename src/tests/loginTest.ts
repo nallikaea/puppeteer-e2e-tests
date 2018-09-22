@@ -23,7 +23,7 @@ describe('Test', () => {
     let loginPage;
 
     before(async () => {
-        browser = await puppeteer.launch(options);
+        browser = await launchPuppeteer();
         page = await browser.newPage();
         await page.setViewport({ width: 1280, height: 1024 });
         const navMenu = new NavigationMenu(page);
