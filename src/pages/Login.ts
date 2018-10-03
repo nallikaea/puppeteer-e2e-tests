@@ -14,15 +14,15 @@ export default class Login extends BasePage {
     }
 
     public get username() : Promise<ElementHandle> {
-        return Promise.resolve(this.page.$(this.loginSelectors.username));
+        return this.page.$(this.loginSelectors.username);
     }
 
     public get password() : Promise<ElementHandle> {
-        return Promise.resolve(this.page.$(this.loginSelectors.password));
+        return this.page.$(this.loginSelectors.password);
     }
 
     public get submitButton() : Promise<ElementHandle> {
-        return Promise.resolve(this.page.$(this.loginSelectors.loginButton));
+        return this.page.$(this.loginSelectors.loginButton);
     }
 
     public async enterUsername(username) : Promise<void> {

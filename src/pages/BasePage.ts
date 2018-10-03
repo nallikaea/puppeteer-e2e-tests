@@ -17,18 +17,17 @@ export default class BasePage {
         }
     }
 
-    protected async getPageSubHeader() : Promise<String> {
-        return await this.page.$eval(this.baseSelectors.pageSubHeaderLocator, e => e.textContent.trim());
+    protected getPageSubHeader() : Promise<String> {
+        return this.page.$eval(this.baseSelectors.pageSubHeaderLocator, e => e.textContent.trim());
     }
 
-    protected async getFooterText() : Promise<String> {
-        return await this.page.$eval(this.baseSelectors.footerTextLocator, e => e.textContent.trim());
+    protected getFooterText() : Promise<String> {
+        return this.page.$eval(this.baseSelectors.footerTextLocator, e => e.textContent.trim());
     }
 
-    protected async getPageMessage() : Promise<String> {
-        // return await this.page.$eval(baseSelectors.pageMessageLocator, e => e.innerText.split('\n')[0].trim());
+    protected getPageMessage() : Promise<String> {
         const selector = this.baseSelectors.pageMessageLocator;
-        return await this.page.$eval(selector, e => e.innerText.replace(/[^a-zA-Z0-9! ]+/g, '').trim());
+        return this.page.$eval(selector, e => e.innerText.replace(/[^a-zA-Z0-9! ]+/g, '').trim());
     }
 
     protected async closePageMessage() : Promise<void> {
