@@ -1,4 +1,6 @@
 {
     "baseURL": "http://the-internet.herokuapp.com",
-    "login": "/login"
+    "login": "/login",
+    "checkboxes": "/checkboxes",
+    "hovers": "/hovers"
 }

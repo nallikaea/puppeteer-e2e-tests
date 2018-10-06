@@ -1,4 +1,7 @@
 import Login from './Login';
+import Checkboxes from './Checkboxes';
+import HoversPage from './HoversPage';
+
 const config = require('../config/config.json');
 const selectors = require('../selectors/navMenu.json');
 
@@ -16,7 +19,7 @@ export default class NavigationMenu {
     }
 
     async loadFormAuthenticationPage() : Promise<Login> {
-        const url = `${baseURL}${config.login}`;
+        const url:string = `${baseURL}${config.login}`;
         await this.page.goto(url);
         return new Login(this.page);
     }
@@ -28,5 +31,17 @@ export default class NavigationMenu {
         while the below code returns an integer greater than zero.
         */
         return await this.page.$$(selectors.navLinks).then(e => e.length);
+    }
+
+    async loadCheckboxesPage() : Promise<Checkboxes> {
+        const url:string = `${baseURL}${config.checkboxes}`;
+        await this.page.goto(url);
+        return new Checkboxes(this.page);
+    }
+
+    async loadHoversPage() : Promise<HoversPage> {
+        const url = `${baseURL}${config.hovers}`;
+        await this.page.goto(url);
+        return new HoversPage(this.page);
     }
 }

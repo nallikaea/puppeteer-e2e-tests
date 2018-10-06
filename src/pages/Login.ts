@@ -1,6 +1,6 @@
 import BasePage from './BasePage';
 import SecuredPage from './SecuredPage';
-import { ElementHandle } from '../../node_modules/@types/puppeteer';
+import { ElementHandle } from 'puppeteer';
 const selectors = require('../selectors/login.json');
 const presenceLocators = require('../selectors/screenPresenceLocators.json');
 
