@@ -16,7 +16,7 @@ const incorrectPassword:string = 'qwerty100';
 const usernameErrorMessage:string = 'Your username is invalid!';
 const passwordErrorMessage:string = 'Your password is invalid!';
 
-describe('Test', () => {
+describe('Authentication test: ', () => {
 
     let browser;
     let page;

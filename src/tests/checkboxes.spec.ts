@@ -3,7 +3,7 @@ import NavigationMenu from '../pages/NavigationMenu';
 import launchPuppeteer from '../utils/launchPuppeteer';
 import Checkboxes from '../pages/Checkboxes';
 
-describe('Test', () => {
+describe('Checkboxes test:', () => {
     let browser;
     let page;
     let navMenu;

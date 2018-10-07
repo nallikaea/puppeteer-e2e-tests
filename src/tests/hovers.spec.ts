@@ -4,7 +4,7 @@ import launchPuppeteer from '../utils/launchPuppeteer';
 require('it-each')();
 require('it-each')({ testPerIteration: true });
 
-describe('Hovers Test', () => {
+describe('Hover over image test:', () => {
     let browser;
     let page;
     let navMenu;
