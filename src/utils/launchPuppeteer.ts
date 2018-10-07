@@ -1,7 +1,7 @@
 import * as puppeteer from 'puppeteer';
 
 const defaultOptions = {
-    headless: false,
+    headless: true,
 };
 
 export default async (options = undefined) => {
