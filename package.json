@@ -4,7 +4,7 @@
   "description": "Provides examples of how to use the puppeteer api. Tests executed against http://the-internet.herokuapp.com.",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --timeout 999999 lib/index.js",
+    "test": "mocha --timeout 999999 --reporter mochawesome lib/index.js",
     "lint": "tslint --fix src/**/*.ts",
     "moveJsonFiles": "copyfiles -u 1 src/selectors/* src/config/* lib",
     "build": "npm run lint && rimraf lib && npm run moveJsonFiles && tsc --outDir lib",
@@ -37,6 +37,7 @@
     "copyfiles": "^2.0.0",
     "it-each": "^0.4.0",
     "mocha": "^5.2.0",
+    "mochawesome": "^3.0.3",
     "pre-commit": "latest",
     "puppeteer-debug": "^1.0.1",
     "rimraf": "^2.6.2",
