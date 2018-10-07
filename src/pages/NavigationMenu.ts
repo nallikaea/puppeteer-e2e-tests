@@ -13,18 +13,20 @@ export default class NavigationMenu {
         this.page = page;
     }
 
+    private async gotoPage(path) {
+        await this.page.goto(`${baseURL}${path}`);
+    }
+
     async loadNavigationMenu() : Promise<void> {
         await this.page.goto(baseURL);
         await this.page.waitFor(selectors.defaultPresenceLocator);
     }
 
-    async loadFormAuthenticationPage() : Promise<Login> {
-        const url:string = `${baseURL}${config.login}`;
-        await this.page.goto(url);
-        return new Login(this.page);
+    public loadFormAuthenticationPage() : Promise<Login> {
+        return this.gotoPage(config.login).then(() => new Login(this.page));
     }
 
-    async getNumberOfLinks() : Promise<number> {
+    public async getNumberOfLinks() : Promise<number> {
         /*
         Do not chain the commands togther, otherwise an empty set will be returned,
         e.g. await this.page.$$(selectors.navLinks).length returns [0]
@@ -34,14 +36,10 @@ export default class NavigationMenu {
     }
 
     async loadCheckboxesPage() : Promise<Checkboxes> {
-        const url:string = `${baseURL}${config.checkboxes}`;
-        await this.page.goto(url);
-        return new Checkboxes(this.page);
+        return this.gotoPage(config.checkboxes).then(() => new Checkboxes(this.page));
     }
 
     async loadHoversPage() : Promise<HoversPage> {
-        const url = `${baseURL}${config.hovers}`;
-        await this.page.goto(url);
-        return new HoversPage(this.page);
+        return this.gotoPage(config.hovers).then(() => new HoversPage(this.page));
     }
 }
