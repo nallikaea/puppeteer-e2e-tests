@@ -28,7 +28,6 @@ describe('Authentication test: ', () => {
         await page.setViewport({ width: 1280, height: 1024 });
         const navMenu = new NavigationMenu(page);
         await navMenu.loadNavigationMenu();
-        console.log(await navMenu.getNumberOfLinks());
         loginPage = await navMenu.loadFormAuthenticationPage();
     });
 
