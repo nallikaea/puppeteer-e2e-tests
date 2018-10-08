@@ -1,10 +1,11 @@
 import BasePage from './BasePage';
 import SecuredPage from './SecuredPage';
+import ILoginPage from '../interfaces/ILoginPage';
 import { ElementHandle } from 'puppeteer';
 const selectors = require('../selectors/login.json');
 const presenceLocators = require('../selectors/screenPresenceLocators.json');
 
-export default class Login extends BasePage {
+export default class Login extends BasePage implements ILoginPage {
     private loginSelectors: any;
     private presenceLocators: any;
     constructor(page) {
@@ -25,13 +26,13 @@ export default class Login extends BasePage {
         return this.page.$(this.loginSelectors.loginButton);
     }
 
-    public async enterUsername(username) : Promise<void> {
+    public async enterUsername(username:string) : Promise<void> {
         const un = await this.username;
         await un.focus();
         await un.type(username);
     }
 
-    public async enterPassword(password) : Promise<void> {
+    public async enterPassword(password:string) : Promise<void> {
         const passwordElement = await this.password;
         await passwordElement.focus();
         await passwordElement.type(password);
@@ -43,17 +44,17 @@ export default class Login extends BasePage {
         return new SecuredPage(this.page);
     }
 
-    public async enterLoginInformation(username, password) : Promise<void> {
+    public async enterLoginInformation(username:string, password:string) : Promise<void> {
         await this.enterUsername(username);
         await this.enterPassword(password);
     }
 
-    public async login(username, password) : Promise<SecuredPage> {
+    public async login(username:string, password:string) : Promise<SecuredPage> {
         await this.enterLoginInformation(username, password);
         return await this.submitLoginForm();
     }
 
-    public async loginWithIncorrectInput(username, password) : Promise<void> {
+    public async loginWithIncorrectInput(username:string, password:string) : Promise<void> {
         await this.enterLoginInformation(username, password);
         await this.submitButton.then(e => e.click());
         await this.page.waitForSelector(this.baseSelectors.pageMessageLocator, { visible: true });
