@@ -1,5 +1,6 @@
 import BasePage from './BasePage';
 import { ElementHandle } from 'puppeteer';
+import IHoversPage from '../interfaces/IHoversPage';
 
 const hoverSelectors = require('../selectors/hoversPage.json');
 const presenceLocators = require('../selectors/screenPresenceLocators.json');
@@ -7,7 +8,7 @@ const config = require('../config/config.json');
 
 const { baseURL } = config;
 
-export default class HoversPage extends BasePage {
+export default class HoversPage extends BasePage implements IHoversPage {
     private hoverSelectors:any;
     private presenceLocators:any;
     constructor(page) {
