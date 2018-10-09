@@ -15,7 +15,7 @@ export default class Checkboxes extends BasePage implements ICheckboxesPage {
         this.presenceLocators = presenceLocators;
     }
 
-    private get checkboxes() : Promise<Array<ElementHandle>> {
+    public get checkboxes() : Promise<Array<ElementHandle>> {
         return this.page.$$(this.checkBoxSelectors.checkboxes);
     }
 
