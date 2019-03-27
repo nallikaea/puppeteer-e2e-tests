@@ -26,24 +26,24 @@
   },
   "homepage": "https://github.com/jdavis61/puppeteer-api-examples#readme",
   "dependencies": {
-    "puppeteer": "^1.6.2"
+    "puppeteer": "^1.13.0"
   },
   "devDependencies": {
-    "@types/chai": "^4.1.2",
-    "@types/mocha": "^2.2.32",
-    "@types/node": "^10.5.3",
-    "@types/puppeteer": "^1.6.0",
+    "@types/chai": "^4.1.7",
+    "@types/mocha": "^5.2.6",
+    "@types/node": "^11.12.0",
+    "@types/puppeteer": "^1.12.3",
     "chai": "^4.2.0",
-    "copyfiles": "^2.0.0",
+    "copyfiles": "^2.1.0",
     "it-each": "^0.4.0",
-    "mocha": "^5.2.0",
-    "mochawesome": "^3.0.3",
+    "mocha": "^6.0.2",
+    "mochawesome": "^3.1.1",
     "pre-commit": "latest",
     "puppeteer-debug": "^1.0.1",
-    "rimraf": "^2.6.2",
-    "ts-node": "^5.0.1",
-    "tslint": "^5.11.0",
-    "tslint-config-airbnb": "^5.7.0",
-    "typescript": "^2.9.2"
+    "rimraf": "^2.6.3",
+    "ts-node": "^8.0.3",
+    "tslint": "^5.14.0",
+    "tslint-config-airbnb": "^5.11.1",
+    "typescript": "^3.3.4000"
   }
 }
