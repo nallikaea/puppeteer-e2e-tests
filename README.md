@@ -6,3 +6,9 @@ This repo contains examples of how to create page objects and tests using [puppe
 
 # Test execution
 To run the tests, execute ```npm install```, ```npm run build``` then ```npm test```.
+
+# Run single spec file without transpiling
+```
+./node_modules/.bin/mocha --timeout 10000 --require ts-node/register <spec_file>.ts
+./node_modules/.bin/mocha --timeout 10000 --require ts-node/register src/tests/brokenimages.spec.ts
+```
