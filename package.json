@@ -1,6 +1,6 @@
 {
   "name": "puppeteer-api-examples",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Provides examples of how to use the puppeteer api. Tests executed against http://the-internet.herokuapp.com.",
   "main": "index.js",
   "scripts": {
