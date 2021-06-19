@@ -32,6 +32,6 @@ describe('JavaScript alerts test', () => {
         });
         expect(await jsAlert.getPageHeader()).to.be.equal('JavaScript Alerts');
         await jsAlert.clickJSAlertButton();
-        expect(await jsAlert.getResult()).to.be.equal('You successfuly clicked an alert');
+        expect(await jsAlert.getResult()).to.be.equal('You successfully clicked an alert');
     });
 });
