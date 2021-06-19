@@ -4,5 +4,6 @@
     "checkboxes": "/checkboxes",
     "hovers": "/hovers",
     "javaScriptAlerts": "/javascript_alerts",
-    "keyPresses": "/key_presses"
+    "keyPresses": "/key_presses",
+    "brokenImages": "/broken_images"
 }
