@@ -3,6 +3,8 @@ import Checkboxes from './Checkboxes';
 import HoversPage from './HoversPage';
 import JavaScriptAlerts from './JavaScriptAlerts';
 import KeyPresses from './KeyPresses';
+import BrokenImages from './BrokenImages';
+import { HTTPResponse } from 'puppeteer';
 
 const config = require('../config/config.json');
 const selectors = require('../selectors/navMenu.json');
@@ -15,8 +17,8 @@ export default class NavigationMenu {
         this.page = page;
     }
 
-    private async gotoPage(path) {
-        await this.page.goto(`${baseURL}${path}`);
+    private async gotoPage(path: string) : Promise<HTTPResponse> {
+        return await this.page.goto(`${baseURL}${path}`);
     }
 
     public async loadNavigationMenu() : Promise<void> {
@@ -24,8 +26,9 @@ export default class NavigationMenu {
         await this.page.waitFor(selectors.defaultPresenceLocator);
     }
 
-    public loadFormAuthenticationPage() : Promise<Login> {
-        return this.gotoPage(config.login).then(() => new Login(this.page));
+    public async loadFormAuthenticationPage() : Promise<Login> {
+        await this.gotoPage(config.login);
+        return new Login(this.page);
     }
 
     public async getNumberOfLinks() : Promise<number> {
@@ -37,19 +40,28 @@ export default class NavigationMenu {
         return await this.page.$$(selectors.navLinks).then(e => e.length);
     }
 
-    public loadCheckboxesPage() : Promise<Checkboxes> {
-        return this.gotoPage(config.checkboxes).then(() => new Checkboxes(this.page));
+    public async loadCheckboxesPage() : Promise<Checkboxes> {
+        await this.gotoPage(config.checkboxes);
+        return new Checkboxes(this.page);
     }
 
-    public loadHoversPage() : Promise<HoversPage> {
-        return this.gotoPage(config.hovers).then(() => new HoversPage(this.page));
+    public async loadHoversPage() : Promise<HoversPage> {
+        await this.gotoPage(config.hovers);
+        return new HoversPage(this.page);
     }
 
-    public loadJavaScriptAlertsPage() {
-        return this.gotoPage(config.javaScriptAlerts).then(() => new JavaScriptAlerts(this.page));
+    public async loadJavaScriptAlertsPage() {
+        await this.gotoPage(config.javaScriptAlerts);
+        return new JavaScriptAlerts(this.page);
     }
 
-    public loadKeyPressesPage() {
-        return this.gotoPage(config.keyPresses).then(() => new KeyPresses(this.page));
+    public async loadKeyPressesPage() {
+        await this.gotoPage(config.keyPresses);
+        return new KeyPresses(this.page);
+    }
+
+    public async loadBrokenImagesPage() {
+        await this.gotoPage(config.brokenImages);
+        return new BrokenImages(this.page);
     }
 }
