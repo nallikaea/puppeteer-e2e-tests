@@ -1,7 +1,6 @@
 import { expect } from 'chai';
 import NavigationMenu from '../pages/NavigationMenu';
 import launchPuppeteer from '../utils/launchPuppeteer';
-import Checkboxes from '../pages/Checkboxes';
 
 describe('Checkboxes test:', () => {
     let browser;

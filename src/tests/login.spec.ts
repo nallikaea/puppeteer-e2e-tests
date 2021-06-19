@@ -1,12 +1,8 @@
-import * as puppeteer from 'puppeteer-debug';
 import { expect } from 'chai';
 import NavigationMenu from '../pages/NavigationMenu';
 import launchPuppeteer from '../utils/launchPuppeteer';
 
 const messages = require('../config/messages.json');
-const options = {
-    headless: false,
-};
 
 // Test constants
 const username:string = 'tomsmith';
