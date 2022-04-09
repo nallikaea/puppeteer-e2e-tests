@@ -6,8 +6,8 @@ const selectors = require('../selectors/checkboxes.json');
 const presenceLocators = require('../selectors/screenPresenceLocators.json');
 
 export default class Checkboxes extends BasePage implements ICheckboxesPage {
-    private checkBoxSelectors:any;
-    private presenceLocators:any;
+    private checkBoxSelectors: any;
+    private presenceLocators: any;
 
     constructor(page) {
         super(page);
@@ -15,15 +15,15 @@ export default class Checkboxes extends BasePage implements ICheckboxesPage {
         this.presenceLocators = presenceLocators;
     }
 
-    public get checkboxes() : Promise<Array<ElementHandle>> {
+    public get checkboxes(): Promise<Array<ElementHandle>> {
         return this.page.$$(this.checkBoxSelectors.checkboxes);
     }
 
-    public checkboxOne() : Promise<ElementHandle> {
+    public checkboxOne(): Promise<ElementHandle> {
         return this.checkboxes.then(e => e[0]);
     }
 
-    public checkboxTwo() : Promise<ElementHandle> {
+    public checkboxTwo(): Promise<ElementHandle> {
         return this.checkboxes.then(e => e[1]);
     }
 }

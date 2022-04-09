@@ -1,11 +1,11 @@
 import BasePage from './BasePage';
 import IBrokenImagesPage from '../interfaces/IBrokenImagesPage';
-import { ElementHandle, HTTPResponse } from 'puppeteer';
 
 const selectors = require('../selectors/brokenImages.json');
 
 export default class BrokenImages extends BasePage implements IBrokenImagesPage {
-    private brokenImagesSelectors:any;
+    private brokenImagesSelectors: any;
+
     constructor(page) {
         super(page);
         this.brokenImagesSelectors = selectors;

@@ -1,6 +1,7 @@
 import { expect } from 'chai';
 import NavigationMenu from '../pages/NavigationMenu';
 import launchPuppeteer from '../utils/launchPuppeteer';
+
 require('it-each')();
 require('it-each')({ testPerIteration: true });
 

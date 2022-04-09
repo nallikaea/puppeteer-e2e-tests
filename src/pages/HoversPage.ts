@@ -9,27 +9,28 @@ const config = require('../config/config.json');
 const { baseURL } = config;
 
 export default class HoversPage extends BasePage implements IHoversPage {
-    private hoverSelectors:any;
-    private presenceLocators:any;
+    private hoverSelectors: any;
+    private presenceLocators: any;
+
     constructor(page) {
         super(page);
         this.hoverSelectors = hoverSelectors;
         this.presenceLocators = presenceLocators;
     }
 
-    get captionLinks() : Promise<Array<ElementHandle>> {
+    get captionLinks(): Promise<Array<ElementHandle>> {
         return this.page.$$(this.hoverSelectors.captionsLinks);
     }
 
-    get captionUsernames() : Promise<Array<ElementHandle>> {
+    get captionUsernames(): Promise<Array<ElementHandle>> {
         return this.page.$$(this.hoverSelectors.captionsUsername);
     }
 
-    get figures() : Promise<Array<ElementHandle>> {
+    get figures(): Promise<Array<ElementHandle>> {
         return this.page.$$(this.hoverSelectors.figureLocator);
     }
 
-    async hoverOverImage(position) : Promise<void> {
+    async hoverOverImage(position): Promise<void> {
         const figure = await this.figures.then(e => e[position]);
         /*
         Per https://github.com/GoogleChrome/puppeteer/issues/1168, "page.click() scroll to the element
@@ -40,17 +41,17 @@ export default class HoversPage extends BasePage implements IHoversPage {
         await figure.click();
     }
 
-    async returnToHoversPage() : Promise<void> {
+    async returnToHoversPage(): Promise<void> {
         const url = `${baseURL}${config.hovers}`;
         await this.page.goto(url);
     }
 
-    async clickViewProfile(position) : Promise<void> {
+    async clickViewProfile(position): Promise<void> {
         const captionLink = await this.captionLinks.then(e => e[position]);
         await captionLink.click();
     }
 
-    async getUserName(position) : Promise<string> {
+    async getUserName(position): Promise<string> {
         // The below returns undefined. In order to get the you have to pass the ElementHandle object to page.evaluate.
         // return this.captionUsernames.then(e => e[position].textContent.trim().replace('name: ', ''));
 

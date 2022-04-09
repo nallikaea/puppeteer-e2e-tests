@@ -1,6 +1,4 @@
 import { expect } from 'chai';
-import { assert } from 'console';
-import BrokenImages from '../pages/BrokenImages';
 import NavigationMenu from '../pages/NavigationMenu';
 import launchPuppeteer from '../utils/launchPuppeteer';
 

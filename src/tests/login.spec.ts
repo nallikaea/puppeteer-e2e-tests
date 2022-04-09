@@ -5,12 +5,12 @@ import launchPuppeteer from '../utils/launchPuppeteer';
 const messages = require('../config/messages.json');
 
 // Test constants
-const username:string = 'tomsmith';
-const password:string = 'SuperSecretPassword!';
-const incorrectUsername:string = 'timsmith';
-const incorrectPassword:string = 'qwerty100';
-const usernameErrorMessage:string = 'Your username is invalid!';
-const passwordErrorMessage:string = 'Your password is invalid!';
+const username: string = 'tomsmith';
+const password: string = 'SuperSecretPassword!';
+const incorrectUsername: string = 'timsmith';
+const incorrectPassword: string = 'qwerty100';
+const usernameErrorMessage: string = 'Your username is invalid!';
+const passwordErrorMessage: string = 'Your password is invalid!';
 
 describe('Authentication test: ', () => {
 
@@ -46,7 +46,7 @@ describe('Authentication test: ', () => {
         expect(await loginPage.getPageHeader()).to.not.equal('Secure Area');
     });
 
-    it('Validation Message Test', async() => {
+    it('Validation Message Test', async () => {
         // username field validation
         await loginPage.loginWithIncorrectInput(incorrectUsername, '');
         expect(await loginPage.getPageMessage()).to.equal(usernameErrorMessage);
@@ -60,11 +60,11 @@ describe('Authentication test: ', () => {
         expect(await loginPage.getPageMessage()).to.equal(usernameErrorMessage);
     });
 
-    it('Close Validation Message Test', async() => {
+    it('Close Validation Message Test', async () => {
         await loginPage.loginWithIncorrectInput(incorrectUsername, incorrectPassword);
         expect(await loginPage.getPageMessage()).to.equal(usernameErrorMessage);
         await loginPage.closePageMessage();
-        let isCloseButtonClicked : boolean = false;
+        let isCloseButtonClicked: boolean = false;
         try {
             await loginPage.closePageMessage();
             isCloseButtonClicked = true;
