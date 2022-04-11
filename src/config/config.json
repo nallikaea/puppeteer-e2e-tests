@@ -1,9 +1,0 @@
-{
-    "baseURL": "http://the-internet.herokuapp.com",
-    "login": "/login",
-    "checkboxes": "/checkboxes",
-    "hovers": "/hovers",
-    "javaScriptAlerts": "/javascript_alerts",
-    "keyPresses": "/key_presses",
-    "brokenImages": "/broken_images"
-}

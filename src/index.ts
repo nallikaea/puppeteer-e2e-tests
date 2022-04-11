@@ -1,5 +1,3 @@
-require('./tests/keypresses.spec.js');
-require('./tests/login.spec.js');
-require('./tests/hovers.spec.js');
-require('./tests/keypresses.spec.js');
-require('./tests/jsalert.spec.js');
+require('./tests/HomePage.spec.js');
+require('./tests/Logins.spec.js');
+require('./tests/SendMessage.spec.js');

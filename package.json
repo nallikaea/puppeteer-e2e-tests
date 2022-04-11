@@ -1,14 +1,16 @@
 {
-  "name": "puppeteer-api-examples",
-  "version": "1.0.2",
+  "name": "puppeteer-e2e-tests",
+  "version": "1.0.3",
   "description": "Provides examples of how to use the puppeteer api. Tests executed against http://the-internet.herokuapp.com.",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --timeout 999999 --reporter mochawesome lib/index.js",
     "lint": "tslint --fix src/**/*.ts",
+    "allure": "allure generate ./allure-results --clean && allure open",
+    "allureServer": "bash ./open-allure-report-server.sh",
+    "deleteAllureResults": "rimraf allure-report && rimraf allure-results && rimraf allure-results.zip",
     "moveJsonFiles": "copyfiles -u 1 src/selectors/* src/config/* lib",
-    "build": "npm run lint && rimraf lib && npm run moveJsonFiles && tsc --outDir lib",
-    "testlocal": "npm run build && npm run test"
+    "test": "npm run build && npm run deleteAllureResults && mocha --config src/.mocharc.js",
+    "build": "npm run lint && rimraf lib && npm run moveJsonFiles && tsc --outDir lib"
   },
   "pre-commit": [
     "lint",
@@ -19,31 +21,33 @@
     "type": "git",
     "url": "git+https://github.com/jdavis61/puppeteer-api-examples.git"
   },
-  "author": "James Davis",
+  "author": "James Davis, Maryna Dolhalova",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/jdavis61/puppeteer-api-examples/issues"
-  },
   "homepage": "https://github.com/jdavis61/puppeteer-api-examples#readme",
   "dependencies": {
-    "puppeteer": "^10.0.0"
+    "puppeteer": "^13.5.2"
   },
   "devDependencies": {
-    "@types/chai": "^4.2.18",
-    "@types/mocha": "^8.2.2",
-    "@types/node": "^15.12.3",
-    "@types/puppeteer": "^5.4.3",
-    "chai": "^4.3.4",
+    "winston": "^3.7.2",
+    "allure-commandline": "^2.17.2",
+    "allure-mocha": "^2.0.0-beta.15",
+    "mocha-multi-reporters": "^1.5.1",
+    "pptr-mock-server": "^1.1.0",
+    "@types/chai": "^4.3.0",
+    "@types/mocha": "^9.1.0",
+    "@types/node": "^17.0.23",
+    "@types/puppeteer": "^5.4.5",
+    "chai": "^4.3.6",
     "copyfiles": "^2.4.1",
     "it-each": "^0.4.0",
-    "mocha": "^9.0.1",
-    "mochawesome": "^6.2.2",
-    "pre-commit": "latest",
-    "puppeteer-debug": "^2.0.0",
+    "mocha": "^9.2.2",
+    "mochawesome": "7.1.3",
+    "pre-commit": "1.2.2",
+    "puppeteer-debug": "^2.1.1",
     "rimraf": "^3.0.2",
-    "ts-node": "^10.0.0",
+    "ts-node": "^10.7.0",
     "tslint": "^6.1.3",
     "tslint-config-airbnb": "^5.11.2",
-    "typescript": "^4.3.4"
+    "typescript": "^4.6.3"
   }
 }
